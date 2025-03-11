@@ -27,7 +27,7 @@ public class VarExe6 {
 		Scanner scn = new Scanner(System.in);
 		
 		Member m1 = new Member(); /* 인스턴트 생성 */
-		m1.name = "홍길동";
+		m1.setName ("홍길동");
 		Member m2 = new Member(); /* 인스턴트 생성 */
 		m2.name = "영희";
 		Member m3 = new Member(); /* 인스턴트 생성 */

@@ -55,7 +55,7 @@ public class ArrayExe3Calendar {
 		}
 	}
 	public static void main(String[] args) {
-		/* 콩솔출력(print vs println) */
+		/* 콘솔출력(print vs println) */
 		
 	String[] days = {"SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"};
 	/*요일출력*/
@@ -75,7 +75,7 @@ public class ArrayExe3Calendar {
 		
 		for(int i=1; i<=lastdate; i++) {
 			if(i == 21) {
-				System.out.print(" test");
+				System.out.print(" 시험");
 			}
 			else if(String.valueOf(i).length() == 1) {
 				System.out.print("   " + i);

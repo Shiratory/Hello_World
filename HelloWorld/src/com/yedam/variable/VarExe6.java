@@ -29,11 +29,11 @@ public class VarExe6 {
 		Member m1 = new Member(); /* 인스턴트 생성 */
 		m1.setName ("홍길동");
 		Member m2 = new Member(); /* 인스턴트 생성 */
-		m2.name = "영희";
+		m2.setName ("영희");
 		Member m3 = new Member(); /* 인스턴트 생성 */
-		m3.name = "철수";
+		m3.setName ("철수");
 		Member m4 = new Member(); /* 인스턴트 생성 */
-		m4.name = "박인만";
+		m4.setName ("박인만");
 		
 		//배열
 		Member[] members = {m1, m2, m3, m4};

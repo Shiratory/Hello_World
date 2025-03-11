@@ -2,8 +2,8 @@ package com.yedam.variable;
 /* public <-> private */
 public class Member {
 	/* 클래스 : 필드 값을 저장 */ 
-	private String name;
-	private int score;
+	public String name;
+	public int score;
 	
 	/* 클래스: 생성자(실체생성)*/
 	/* 컴파일러 기본생성자 생성 */

@@ -47,6 +47,13 @@ public class ArrayExe3Calendar {
 		}
 		return date;
 	}
+	public static void getTestDate(int month) {
+		switch(month) {
+		case 3:
+			System.out.print("Test");
+			break;
+		}
+	}
 	public static void main(String[] args) {
 		/* 콩솔출력(print vs println) */
 		
@@ -58,7 +65,7 @@ public class ArrayExe3Calendar {
 		System.out.print(" " + day);
 	}
 		System.out.println(); // 줄바꿈
-		int month = 9;
+		int month = 3;
 		int space = getFirstDay(month); // 1일의 위치값
 		int lastdate = getLastDate(month); // 마지막날
 		/* 공백갯수만큼 빈 칸 */
@@ -67,7 +74,10 @@ public class ArrayExe3Calendar {
 		}
 		
 		for(int i=1; i<=lastdate; i++) {
-			if(String.valueOf(i).length() == 1) {
+			if(i == 21) {
+				System.out.print(" test");
+			}
+			else if(String.valueOf(i).length() == 1) {
 				System.out.print("   " + i);
 			}else if(String.valueOf(i).length() == 2) {
 				System.out.print("  " + i);
@@ -76,6 +86,7 @@ public class ArrayExe3Calendar {
 			if((space + i) % 7 == 0) {
 				System.out.println();
 			}
+			
 		}
 	}
 

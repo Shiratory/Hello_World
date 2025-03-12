@@ -39,15 +39,16 @@ public class VarExe6 {
 		Member[] members = {m1, m2, m3, m4};
 		/* 70 - 100 사이의 임의값으로 정수지정 */
 		for(int i=0; i<members.length; i++) {
-			members[i].score = (int) (Math.random()*31)+70;
+			/*members[i].score = (int) (Math.random()*31)+70;*/
+			members[i].setScore((int) (Math.random()*31)+70);
 		}
 		
 		/* 조회할 이름입력 > 점수출력 */
 		System.out.println("조회할 이름 입력>> ");
 		String search = scn.nextLine();
 		for (int i=0; i<members.length; i++) {
-			if(members[i].name.equals(search)) {
-				System.out.println(members[i].name + members[i].score + "점");
+			if(members[i].getName().equals(search)) {
+				System.out.println(members[i].getScore() + "점");
 			}
 		}
 		/* 점수가 가장 높은 사람이름 */

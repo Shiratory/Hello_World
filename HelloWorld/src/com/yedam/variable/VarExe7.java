@@ -58,6 +58,7 @@ public class VarExe7 {
 				}
 				break;
 				
+				
 			case 3: // 삭제, 이름입력 조회 후 => null 대입
 				int remove = -1;
 				System.out.print("삭제할 이름을 입력하세요 ");

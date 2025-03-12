@@ -74,7 +74,7 @@ public class ArrayExe3Calendar {
 		}
 		
 		for(int i=1; i<=lastdate; i++) {
-			if(i == 21) {
+			if(month == 3 && i == 21) {
 				System.out.print(" 시험");
 			}
 			else if(String.valueOf(i).length() == 1) {

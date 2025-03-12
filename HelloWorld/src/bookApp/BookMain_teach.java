@@ -1,4 +1,4 @@
-package com.yedam.bookApp;
+package bookApp;
 
 import java.util.Scanner;
 
@@ -6,7 +6,7 @@ import java.util.Scanner;
  * 등록, 수정, 삭제, 목록 
  */
 
-public class BookMain {
+public class BookMain_teach {
 
 	// 저장공간.
 	static Book[] bookStore = new Book[100];

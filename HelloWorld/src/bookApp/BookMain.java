@@ -111,8 +111,8 @@ public class BookMain {
     }
 
     public static void init() {
-        bookStore[0] = new Book("이것이자바다", "신용권", "한빛출", 20000);
-        bookStore[1] = new Book("스크립트기초", "박기초", "우리출", 26000);
-        bookStore[2] = new Book("HTML,CSS", "김하늘", "가람출", 18000);
+        bookStore[0] = new Book("이것이자바다", "신용권", "한빛출", 20000, 1);
+        bookStore[1] = new Book("스크립트기초", "박기초", "우리출", 26000, 2);
+        bookStore[2] = new Book("HTML,CSS", "김하늘", "가람출", 18000, 3);
     }
 }

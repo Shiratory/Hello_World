@@ -17,7 +17,7 @@ public class Book{
 	}
 	//생성자
 	public Book() {}
-	public Book(String title, String author, String company, int price) { 
+	public Book(String title, String author, String company, int price, int seqNo) { 
 		this.title = title;
 		this.author = author;
 		this.price = price;

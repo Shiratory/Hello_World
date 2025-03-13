@@ -150,7 +150,24 @@ public class BookMain_teach {
 			if (bok != null)
 				System.out.println(seqNo++ + " " + bok.showList());
 		}
-	} // end of list().
+	} // end of list
+	
+	public static void listCompany() {
+		System.out.println("조회할 출판사 입력>> ");
+		String company = scn.nextLine();
+		
+		int seqNo = 1;
+		System.out.println("순번 제목      저자   가격");
+		System.out.println("====================");
+		Book[] list = searchList(company);
+		for (Book bok : list) {
+			if (bok != null) {
+				if(bok.getCompany().equals(company)) {
+					System.out.println(seqNo++ + " " + bok.showList());
+				}
+			}
+		}
+	} // end of listCompany
 
 	public static void bookInfo() {
 		// 반드시 값을 입력받도록.
@@ -163,6 +180,7 @@ public class BookMain_teach {
 			}
 			System.out.println("제목을 입력하세요!!!");
 		}
+
 		// 상세조회.
 		Book result = searchBook(title);
 		if (result == null) {
@@ -184,6 +202,20 @@ public class BookMain_teach {
 		return null; // 조회결과가 없을 경우에는 null을 반환.
 	} // end of searchBook(String title).
 
+	//list와 listCompany에서 활용할 공통메소드
+	public static Book[] searchList(String keyword) {
+		Book[] list = new Book[100];
+		int idx = 0;
+		for(int i = 0; i <bookStore.length; i++) {
+			if(bookStore[i] != null) {
+				if(keyword == null || bookStore[i].getCompany().equals(keyword)) {
+					list[idx++] = bookStore[i];
+				}
+			}
+			
+		}
+		return list;
+	}
 	public static void main(String[] args) {
 		init();
 		boolean run = true;
@@ -206,6 +238,9 @@ public class BookMain_teach {
 				break;
 			case 5: // 상세조회.
 				bookInfo();
+				break;
+			case 6: // 목록조회(출판사)
+				listCompany();
 				break;
 			case 9: // 종료.
 				System.out.println("프로그램을 종료합니다.");

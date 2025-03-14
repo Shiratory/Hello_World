@@ -5,7 +5,7 @@ public class MethodExe2 {
 	Product[] store;
 	
 	// 생성자
-	MethodExe2(){
+	public MethodExe2(){
 		store = new Product[10];
 		store[0] = new Product("A001", "지우개", 500);
 		store[1] = new Product("B001", "테이프", 900);
@@ -16,7 +16,7 @@ public class MethodExe2 {
 		store[6] = new Product("G001", "지우개", 1500);
 	}
 	// 메소드
-	boolean add(Product prd) {
+	public boolean add(Product prd) {
 		for(int i=0; i<store.length; i++) {
 			if(store[i] == null) {
 				store[i] = prd;
@@ -26,14 +26,14 @@ public class MethodExe2 {
 		return false;
 	}
 	// 상품이름, ALL
-	Product[] productList(Product prd) {
+	public Product[] productList(Product prd) {
 		Product[] list = new Product[10];
 		int idx = 0;
 		for(int i=0; i<store.length; i++) {
 			if(store[i] != null) {
 				if(prd.getProductName().equals("ALL") || store[i].getProductName().equals(prd.getProductName())) {
 					// 상품가격이 조건으로 추가됨
-					if(prd.getPrice() > 0 && store[i].getPrice() >= prd.getPrice()) {
+					if(store[i].getPrice() >= prd.getPrice()) {
 						list[idx++] = store[i];
 					}
 				}
@@ -43,7 +43,7 @@ public class MethodExe2 {
 	}
 	// 삭제 > boolean remove(String code)
 	
-	boolean remove(String code) {
+	public boolean remove(String code) {
 		for(int i=0; i<store.length; i++) {
 			if(store[i] != null) {
 				if(code.equals("ALL") || store[i].getProductCode().equals(code)){
@@ -56,7 +56,7 @@ public class MethodExe2 {
 	}
 	// 수정 > boolean modify(Product prod)
 	
-	boolean modify(Product prod) {
+	public boolean modify(Product prod) {
 		for(int i=0; i<store.length; i++) {
 			if(store[i] != null && store[i].getProductCode().equals(prod.getProductCode())) {
 				

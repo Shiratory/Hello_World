@@ -1,10 +1,12 @@
 package classes;
+import java.util.List;
 import java.util.Scanner;
 
 public class MethodMain {
 	
 
 	private static MethodExe2 m2;
+	private static Product search;
 
 	public static void main(String[] args) {
 		String code;
@@ -57,14 +59,11 @@ public class MethodMain {
 		// officeApp end
 	
 	static void search() {
-		Product[] list = m2.productList(new Product(null, "ALL", 0));
-		for(int i=0; i<list.length; i++) {
-			if(list[i] != null) {
-			System.out.println(list[i].showList());
+		List<Product> list = m2.productList(search);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i).showList());
 			}
-		}
 	}
-	
 	
 		// 상품코드 : M001, 상품명 : 만년필, 가격 : 10000
 //		MethodExe2 m2 = new MethodExe2() {

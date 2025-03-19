@@ -16,6 +16,16 @@ public class OracleDao implements Dao {
 	public void delete() {
 		System.out.println("oracle용 삭제");
 	}
+	@Override
+	public void modify() {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void remove() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }

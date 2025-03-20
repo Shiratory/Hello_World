@@ -1,4 +1,4 @@
-package com.yedam.bookApp;
+package com.yedam.bookapp;
 
 public class User {
 	private String userId;

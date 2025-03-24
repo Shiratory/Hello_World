@@ -205,7 +205,7 @@ public class BookMain {
 		return dao.select(bcode); // 조회결과가 없을 경우에는 null을 반환.
 	} // end of searchBook(String title).
 
-	public void main(String[] args) {
+	public void main() {
 		// id, password 확인.
 		while (true) {
 			System.out.println("id입력>> ");

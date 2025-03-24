@@ -98,13 +98,12 @@ public class BookJdbc {
 		return false; // 등록실패
 	}
 
-	// 목록.
+	// 전체목록.
 	public List<Book> list(String company) {
 		List<Book> list = new ArrayList<Book>();
 		Connection conn = getConnect();
-		String sql = "select * from tbl_book "//
-				+ "where company = nvl(?, company) "//
-				+ "order by book_code";
+		String sql = "select * from tbl_book ";//
+
 
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);

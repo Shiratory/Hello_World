@@ -21,7 +21,7 @@ public class BookApp {
 		// singleton 객체 호출.
 		BookMain mainApp1 = BookMain.getInstance();
 //		BookMain mainApp2 = BookMain.getInstance();
-		mainApp1.main(args);
+		mainApp1.main();
 //		mainApp1.add(); // 1번에 등록.
 //		mainApp1.list();
 

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceJdbc {
+	
+	
 	Connection getConnect() {
 		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String userId = "scott";
@@ -29,7 +31,7 @@ public class DeviceJdbc {
 	public boolean insert(Device device) {
 		Connection conn = getConnect();
 		String sql = "insert into tbl_device (dev_code, dev_name, unpack, stock)\r\n"
-				   + "values(dev_seq.nextval, ?, ?, ?, ?)";
+				   + "values(?, ?, ?, ?)";
 		
 		try {
 			PreparedStatement stmt = conn.prepareStatement(sql);
@@ -37,6 +39,7 @@ public class DeviceJdbc {
 			stmt.setString(2, device.getDeviceName());
 			stmt.setInt(3, device.getUnpack());
 			stmt.setString(4, device.getStock());
+			
 		
 			int r = stmt.executeUpdate();
 			if(r > 0) {
@@ -119,26 +122,27 @@ public class DeviceJdbc {
 
 	
 	// 기기명으로 검색
-	public Device select(String dcode) {
+	public List<Device> select(String dcode) {
+		List<Device> list = new ArrayList<Device>();
 		Connection conn = getConnect();
 		String sql = "select * from tbl_device "
-				   + "where dev_name = ?";
+				   + "where dev_name like ?";
 		
 		try {
 			PreparedStatement psmt = conn.prepareStatement(sql);
-			psmt.setString(1, dcode);
+			psmt.setString(1, dcode + "%");
 			ResultSet rs = psmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				Device device = new Device();
 				device.setDeviceCode(rs.getString("dev_code"));
 				device.setDeviceName(rs.getString("dev_name"));
 				device.setUnpack(rs.getInt("unpack"));
 				device.setStock(rs.getString("stock"));
-				return device;
+				list.add(device);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return null;
+		return list;
 	}
 }

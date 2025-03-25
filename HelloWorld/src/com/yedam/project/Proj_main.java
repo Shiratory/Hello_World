@@ -26,75 +26,98 @@ public class Proj_main {
 	Scanner scn = new Scanner(System.in);
 	DeviceJdbc dao = new DeviceJdbc();
 	
+	
 	private Userdata login(String id, String pw) {
 		UserJdbc dao = new UserJdbc();
 		return dao.login(id, pw);
 	}
 	
-	private int getSequenceNo() {
-		int max = 0;
-		return max + 1;
-	}
 	
 	// 유용한 사이트 모음
 	private void useful() {
-		Scanner scn = new Scanner(System.in);
-		System.out.println("어떤 정보를 찾고 계십니까? \n 1.중고기기를 거래하고 싶어요 \n 2.테크 소식과 뉴스를 보고 싶어요 \n 3.내 기기와 다른 기기의 성능비교를 원해요");
+		System.out.println("-----------------------------------");
+		System.out.println("       어떤 정보를 찾고 계십니까? \n"
+				          + "----------------------------------- \n"
+				          + "1. 중고기기를 거래하고 싶어요 \n"
+				          + "2. 테크 소식과 뉴스를 보고 싶어요 \n"
+				          + "3. 내 기기와 다른 기기의 성능비교를 원해요");
 		int num = Integer.parseInt(scn.nextLine());
 		
 		if(num == 1) {
-			System.out.println(Device.num_one());
+			System.out.println(Device.num_one());			
 		}
 		if(num == 2) {
-			System.out.println(Device.num_two());
+			System.out.println(Device.num_two());			
 		}
 		if(num == 3) {
-			System.out.println(Device.num_two());
-		} else {
-			System.out.println("올바른 숫자를 입력하세요.");
-			return;
+			System.out.println(Device.num_thr());			
 		}
 	}
 	
 	
 	// 상품추가
 	private void add() {
-		System.out.println("기기코드를 입력하세요: ");
-		String code = scn.nextLine();
-		if((code) != null) {
-			System.out.println("이미 등록된 제품코드입니다.");
+		System.out.print("관리자 전용 메뉴입니다. 비밀번호를 입력하세요: ");
+		String password = scn.nextLine();
+		
+		String intPassword = "admin";
+		if(!password.equals(intPassword)) {
+			System.out.println("----------------------------------------");
+			System.out.print("비밀번호가 틀렸습니다. 이전 메뉴로 되돌아갑니다. \n");
 			return;
 		}
-		System.out.println("기기명을 입력하세요: ");
+		
+		
+		String bcode = "";
+		while(true) {
+			System.out.print("추가할 제품의 코드를 입력하세요: ");
+			bcode = scn.nextLine();
+			if(!bcode.isBlank()) {
+				break;
+			}
+			System.out.println("제품코드는 필수 입력항목입니다.");
+		}
+		System.out.print("제품명을 입력하세요: ");
 		String name = scn.nextLine();
-		System.out.println("출시년도를 입력하세요: ");
+		System.out.print("출시년도를 입력하세요: ");
 		String year = scn.nextLine();
-		System.out.println("재고를 입력하세요: ");
+		System.out.print("재고를 입력하세요: ");
 		String stock = scn.nextLine();
 		
-		if(code.isBlank() || name.isBlank() || year.isBlank() || stock.isBlank()) {
-			System.out.println("입력되지 않은 항목이 있습니다.");
+		if(bcode.isBlank() || name.isBlank() || year.isBlank() || stock.isBlank()) {
+			System.out.println("입력되지 않은 항목이 있습니다. 작업을 취소합니다.");
 			return;
 		}
-		Device device = new Device(code, name, Integer.parseInt(year), stock);
+		Device device = new Device(bcode, name, Integer.parseInt(year), stock);
 		if(dao.insert(device)) {
-			System.out.println("항목이 추가되었습니다.");
-		}
+			System.out.println("상품이 추가되었습니다.");
+		} else
+			System.out.println("이미 등록된 기기입니다. 확인 후 다시 시도해주세요.");
 	}
 
 	
 	// 상품삭제
 	private void delete() {
-		String dcode = "";
+		System.out.print("관리자 전용 메뉴입니다. 비밀번호를 입력하세요: ");
+		String password = scn.nextLine();
+		
+		String intPassword = "admin";
+		if(!password.equals(intPassword)) {
+			System.out.println("----------------------------------------");
+			System.out.print("비밀번호가 틀렸습니다. 이전 메뉴로 되돌아갑니다. \n");
+			return;
+		}
+		
+		String bcode = "";
 		while(true) {
-			System.out.println("삭제할 제품코드를 입력하세요: ");
-			dcode : scn.nextLine();
-			if(!dcode.isBlank()) {
+			System.out.print("삭제할 제품코드를 입력하세요: ");
+			bcode = scn.nextLine();
+			if(!bcode.isBlank()) {
 				break;
 			}
 			System.out.println("제품코드는 필수 입력항목입니다.");
 		}
-		if (dao.delete(dcode)) {
+		if (dao.delete(bcode)) {
 			System.out.println("삭제되었습니다.");
 		} else {
 			System.out.println("삭제할 항목이 없습니다.");
@@ -104,52 +127,72 @@ public class Proj_main {
 	
 	// 상품수정
 	private void edit() {
-		System.out.print("정보를 수정할 제품코드를 입력하세요: ");
-		String dcode = scn.nextLine();
-		if(dcode.isBlank()) {
-			System.out.println("제품코드는 필수 입력항목입니다.");
+		System.out.print("관리자 전용 메뉴입니다. 비밀번호를 입력하세요: ");
+		String password = scn.nextLine();
+		
+		String intPassword = "admin";
+		if(!password.equals(intPassword)) {
+			System.out.println("----------------------------------------");
+			System.out.print("비밀번호가 틀렸습니다. 이전 메뉴로 되돌아갑니다. \n");
 			return;
 		}
-		System.out.print("수정할 제품명을 입력하세요.");
+		
+		String bcode = "";
+		while(true) {
+			System.out.print("수정할 제품코드를 입력하세요: ");
+			bcode = scn.nextLine();
+			if(!bcode.isBlank()) {
+				break;
+			}
+			System.out.println("제품코드는 필수 입력항목입니다.");
+		}
+		System.out.print("수정할 상품명을 입력하세요: ");
 		String name = scn.nextLine();
-		System.out.print("수정할 출시년도를 입력하세요.");
+		System.out.print("수정할 출시년도를 입력하세요: ");
 		String year = scn.nextLine();
-		System.out.print("재고를 몇 개로 수정하시겠습니까?");
+		System.out.print("재고를 몇 개로 수정하시겠습니까?: ");
 		String stock = scn.nextLine();
 		
 		Device device = new Device();
-		device.setDeviceCode(dcode);
+		device.setDeviceCode(bcode);
 		device.setDeviceName(name);
 		device.setUnpack(Integer.parseInt(year));
 		device.setStock(stock);
 		
 		if(dao.update(device)) {
 			System.out.println("수정되었습니다.");
+		} else {
+			System.out.println("----------------------------------------");
+			System.out.println("항목을 찾을 수 없습니다. 제품코드를 확인 후 다시 시도하세요.");
 		}
+		
 	}
 		
 	
-	// 상품리스트
+	// 전체상품리스트
 	private void list_all() {
-		Device temp = null;
 		
-		int seqNo = 1;
-		System.out.println("----------------------------------------");
-		System.out.println("제품코드        제품명        출시년도   재고");
+		int seqNo = 0;
+		System.out.println("-------------------------------------------");
+		System.out.println("     제품코드" + "\t" + "    제품명   " + "\t" + "출시년도  " + "재고");
+		System.out.println("-------------------------------------------");
 		List<Device>list = searchList("");
 		for(Device dev : list) {
 			if(dev != null) {
-				System.out.println(" " + seqNo++ + " " + dev.showList());
+				System.out.println(" " + seqNo++ + " || " + dev.showList());
 			}
 		}
+		System.out.println("-------------------------------------------");
+		System.out.println("총 " + seqNo + "개의 상품이 있습니다.");
 	}
 	
 	
 	// 상품검색
 	private void search() {
+		int i = 0;
 		String name = "";
 		while(true) {
-			System.out.println("제품명을 입력해주세요: ");
+			System.out.println("제품명을 입력해주세요: \n");
 			name = scn.nextLine();
 			if(!name.isBlank()) {
 				break;
@@ -157,12 +200,18 @@ public class Proj_main {
 			System.out.println("제품명은 필수입력 항목입니다.");
 		}
 		
-		Device result = searchDevice(name);
-		if(result == null) {
+		List<Device> result = searchDevice(name);
+		if(result.isEmpty()) {
+			System.out.println("----------------------------------------");
 			System.out.println("검색결과가 없습니다.");
 			return;
 		}
-		System.out.println(result.showListInfo());
+		for(i = 0; i < result.size(); i++) {
+			System.out.println(result.get(i).showListInfo());
+		}
+		System.out.println("__________________________________________________________________________");
+		System.out.println("검색어 " + "'" + name + "'" + "을(를) 포함한 " + (i) + "개의 상품이 검색되었습니다.");
+		
 	}
 	
 	
@@ -173,9 +222,9 @@ public class Proj_main {
 		return list;
 	}
 
-	// 기기명으로 조회
-	private Device searchDevice(String dcode) {
-		return dao.select(dcode);
+	// 기기명으로 검색
+	private List<Device> searchDevice(String bcode) {
+		return dao.select(bcode);
 	}
 	
 	
@@ -188,10 +237,9 @@ public class Proj_main {
 			
 			Userdata user = login(id, pw);
 			if (user != null) {
-				System.out.println("========================================");
-				System.out.println("            환영합니다, " + (user.getUserName()) + "님");
-				System.out.println("========================================");
-//				System.out.println("     ");
+				System.out.println("================================================");
+				System.out.println("                환영합니다, " + (user.getUserName()) + "님");
+				System.out.println("================================================");
 				break;
 			}
 			System.out.println("아이디, 비밀번호를 다시 확인해주세요.");
@@ -199,11 +247,11 @@ public class Proj_main {
 		
 		boolean run = true;
 		while(run) {
-			System.out.println("----------------------------------------\n"
-					+          "1.상품검색 2.모든상품 조회  3.유용한 사이트 모음\n"
-					+          "4.상품 등록    5.상품 삭제     6.상품정보 수정\n"
-					+          "----------------------------------------\n"
-					+          "                           0.프로그램 종료");
+			System.out.println("-------------------------------------------------\n"
+					+          "1.상품검색" + "\t" + "2.모든상품 조회" + "\t" + "3.유용한 사이트 모음\n"
+					+          "4.상품 등록" + "\t" + "5.상품 삭제" + "\t" + "6.상품정보 수정\n"
+					+          "-------------------------------------------------\n"
+					+          "                                0.프로그램 종료");
 			System.out.println("메뉴를 선택하세요: ");
 			int menu = 0;
 			while(true) {

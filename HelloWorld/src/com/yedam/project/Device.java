@@ -19,7 +19,7 @@ public class Device {
 		return DeviceCode + "\t" + DeviceName + "\t" + Unpack + "\t" + Stock;
 	}
 	public String showListInfo() {
-		String msg = "기기코드: " + DeviceCode + "\t" + "|| 기기명: " + DeviceName + "\t" + "|| 출시년도: " + Unpack + " || 재고량: " + Stock;
+		String msg = "\n" + "기기코드: " + DeviceCode + "\t" + "|| 기기명: " + DeviceName + "\t" + "|| 출시년도: " + Unpack + " || 재고량: " + Stock;
 		return msg;
 	}
 	

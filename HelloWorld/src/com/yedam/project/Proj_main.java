@@ -25,8 +25,9 @@ public class Proj_main {
 	
 	Scanner scn = new Scanner(System.in);
 	DeviceJdbc dao = new DeviceJdbc();
+	UserJdbc bao = new UserJdbc();
 	
-	
+	// 로그인 (아이디 비번 입력)
 	private Userdata login(String id, String pw) {
 		UserJdbc dao = new UserJdbc();
 		return dao.login(id, pw);
@@ -70,6 +71,7 @@ public class Proj_main {
 		
 		String bcode = "";
 		while(true) {
+			System.out.println ("----------------------------");
 			System.out.print("추가할 제품의 코드를 입력하세요: ");
 			bcode = scn.nextLine();
 			if(!bcode.isBlank()) {
@@ -77,10 +79,13 @@ public class Proj_main {
 			}
 			System.out.println("제품코드는 필수 입력항목입니다.");
 		}
+		System.out.println ("----------------------------");
 		System.out.print("제품명을 입력하세요: ");
 		String name = scn.nextLine();
+		System.out.println ("----------------------------");
 		System.out.print("출시년도를 입력하세요: ");
 		String year = scn.nextLine();
+		System.out.println ("----------------------------");
 		System.out.print("재고를 입력하세요: ");
 		String stock = scn.nextLine();
 		
@@ -90,9 +95,10 @@ public class Proj_main {
 		}
 		Device device = new Device(bcode, name, Integer.parseInt(year), stock);
 		if(dao.insert(device)) {
+			System.out.println ("----------------------------");
 			System.out.println("상품이 추가되었습니다.");
 		} else
-			System.out.println("이미 등록된 기기입니다. 확인 후 다시 시도해주세요.");
+			System.out.println ("----------------------------");
 	}
 
 	
@@ -110,6 +116,7 @@ public class Proj_main {
 		
 		String bcode = "";
 		while(true) {
+			System.out.println ("----------------------------");
 			System.out.print("삭제할 제품코드를 입력하세요: ");
 			bcode = scn.nextLine();
 			if(!bcode.isBlank()) {
@@ -118,8 +125,10 @@ public class Proj_main {
 			System.out.println("제품코드는 필수 입력항목입니다.");
 		}
 		if (dao.delete(bcode)) {
+			System.out.println ("----------------------------");
 			System.out.println("삭제되었습니다.");
 		} else {
+			System.out.println ("----------------------------");
 			System.out.println("삭제할 항목이 없습니다.");
 		}
 	}
@@ -139,6 +148,7 @@ public class Proj_main {
 		
 		String bcode = "";
 		while(true) {
+			System.out.println ("----------------------------");
 			System.out.print("수정할 제품코드를 입력하세요: ");
 			bcode = scn.nextLine();
 			if(!bcode.isBlank()) {
@@ -146,10 +156,13 @@ public class Proj_main {
 			}
 			System.out.println("제품코드는 필수 입력항목입니다.");
 		}
+		System.out.println ("----------------------------");
 		System.out.print("수정할 상품명을 입력하세요: ");
 		String name = scn.nextLine();
+		System.out.println ("----------------------------");
 		System.out.print("수정할 출시년도를 입력하세요: ");
 		String year = scn.nextLine();
+		System.out.println ("----------------------------");
 		System.out.print("재고를 몇 개로 수정하시겠습니까?: ");
 		String stock = scn.nextLine();
 		
@@ -172,7 +185,7 @@ public class Proj_main {
 	// 전체상품리스트
 	private void list_all() {
 		
-		int seqNo = 0;
+		int seqNo = 1;
 		System.out.println("-------------------------------------------");
 		System.out.println("     제품코드" + "\t" + "    제품명   " + "\t" + "출시년도  " + "재고");
 		System.out.println("-------------------------------------------");
@@ -182,8 +195,10 @@ public class Proj_main {
 				System.out.println(" " + seqNo++ + " || " + dev.showList());
 			}
 		}
+		int num = -1;
+		num = num + seqNo;
 		System.out.println("-------------------------------------------");
-		System.out.println("총 " + seqNo + "개의 상품이 있습니다.");
+		System.out.println("총 " + num + "개의 상품이 있습니다.");
 	}
 	
 	
@@ -192,6 +207,7 @@ public class Proj_main {
 		int i = 0;
 		String name = "";
 		while(true) {
+			System.out.println ("----------------------------");
 			System.out.println("제품명을 입력해주세요: \n");
 			name = scn.nextLine();
 			if(!name.isBlank()) {
@@ -209,11 +225,37 @@ public class Proj_main {
 		for(i = 0; i < result.size(); i++) {
 			System.out.println(result.get(i).showListInfo());
 		}
-		System.out.println("__________________________________________________________________________");
+		System.out.println("-------------------------------------------------");
 		System.out.println("검색어 " + "'" + name + "'" + "을(를) 포함한 " + (i) + "개의 상품이 검색되었습니다.");
 		
 	}
 	
+	
+	// 회원가입
+	private void join() {
+		System.out.print ("---------------------------- \n");
+		System.out.println("가입할 아이디를 입력하세요: ");
+		String id = scn.nextLine();
+		System.out.print ("---------------------------- \n");
+		System.out.println("사용할 닉네임을 입력하세요: ");
+		String nn = scn.nextLine();
+		System.out.print ("---------------------------- \n");
+		System.out.println("비밀번호를 입력하세요: ");
+		String pw = scn.nextLine();
+	
+		if(id.isBlank() || nn.isBlank() || pw.isBlank()) {
+			System.out.println("입력하지 않은 항목이 있습니다.");
+			return;
+		}
+		Userdata userdata = new Userdata(id, nn, pw);
+			if(bao.join(userdata)) {
+				System.out.println ("----------------------------");
+				System.out.println("      회원가입을 환영합니다.");
+				System.out.println ("----------------------------");
+			} else {
+				System.out.println("회원가입에 실패했습니다.");
+			}
+	}
 	
 	
 	// list_all와 검색결과에서 사용
@@ -228,20 +270,50 @@ public class Proj_main {
 	}
 	
 	
+
+
 	public void main() {
+		
+		System.out.print ("---------------------------- \n");
+		System.out.print ("     방문해주셔서 감사합니다 \n");
+		System.out.print ("----------------------------\n");
 		while(true) {
+			int sign = 0;
+			System.out.println("1. 로그인 " + "2. 회원가입");
+			
+				try {
+					sign = Integer.parseInt(scn.nextLine());
+				} catch(NumberFormatException e) {
+					System.out.println("실행할 기능을 숫자로 입력해주세요.\n");
+					System.out.println ("----------------------------");
+				}
+			
+				if(sign == 1) {
+					break;
+				} else if(sign == 2){
+					join();
+				}	
+			}
+		
+		
+		
+		
+		while(true) {
+			
+			System.out.println ("----------------------------");
 			System.out.println("아이디를 입력하세요: ");
 			String id = scn.nextLine();
+			System.out.println ("----------------------------");
 			System.out.println("비밀번호를 입력하세요: ");
 			String pw = scn.nextLine();
 			
 			Userdata user = login(id, pw);
 			if (user != null) {
-				System.out.println("================================================");
+				System.out.println("=================================================");
 				System.out.println("                환영합니다, " + (user.getUserName()) + "님");
-				System.out.println("================================================");
+				System.out.println("=================================================");
 				break;
-			}
+				}
 			System.out.println("아이디, 비밀번호를 다시 확인해주세요.");
 		}
 		

@@ -26,6 +26,30 @@ public class UserJdbc {
 		return null;
 	}
 	
+	
+	// 회원가입
+	public boolean join(Userdata userdata) {
+		Connection conn = getConnect();
+		String sql = "insert into tbl_member (user_id, password, user_name)\r\n"
+				   + "values(?, ?, ?)";
+		try {
+			PreparedStatement stmt;
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, userdata.getUserId());
+			stmt.setString(2, userdata.getPassWord());
+			stmt.setString(3, userdata.getUserName());
+			
+			int r = stmt.executeUpdate();
+			if(r > 0) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			return false;
+	}
+	
+	// 로그인
 	public Userdata login(String id, String pw) {
 		Connection conn = getConnect();
 		String sql = "select * from tbl_member"

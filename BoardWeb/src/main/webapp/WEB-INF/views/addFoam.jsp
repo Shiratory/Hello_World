@@ -5,13 +5,13 @@
 	<form action = "addBoard.do" method = "post">
 	 <table class = "table">
 	  <tr>
-	   <th>글제목</th><td><input type = "text" name = "title"></td>
+	   <th>글제목</th><td><input type = "text" name = "title" class="form-control"></td>
 	  </tr>
 	  <tr>
-	   <th>작성자</th><td><input type = "text" name = "writer"></td>
+	   <th>작성자</th><td><input type = "text" name = "writer" class="form-control"></td>
 	  </tr>
 	  <tr>
-	   <th>본문</th><td><textarea name = "content" rows = "3" cols = "40"></textarea></td>
+	   <th>본문</th><td><textarea name = "content" rows = "3" cols = "40" class="form-control"></textarea></td>
 	  </tr>
 	  <tr>
 	   <td colspan = "2" align = "center">

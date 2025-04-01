@@ -1,3 +1,4 @@
+<%@page import="com.yedam.common.SearchDTO"%>
 <%@page import="com.yedam.mapper.BoardMapper"%>
 <%@page import="com.yedam.common.DataSource"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
@@ -22,7 +23,9 @@
 	int age = 200;
 	SqlSession sqlSession = DataSource.getInstance().openSession();
 	BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
-	List<BoardVO> list = mapper.selectBoard();
+	SearchDTO search = new SearchDTO();
+	search.setPage(1);
+	List<BoardVO> list = mapper.selectBoard(search);
 	%>
 	<h3>글 목록</h3>
 	<ul>

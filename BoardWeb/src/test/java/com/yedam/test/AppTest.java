@@ -10,7 +10,7 @@ import com.yedam.common.SearchDTO;
 import com.yedam.mapper.BoardMapper;
 import com.yedam.vo.BoardVO;
 
-public class Test {
+public class AppTest {
 	public static void main(String[] args) {
 			SqlSessionFactory sqlSessionFactory = DataSource.getInstance();
 		BoardVO board = new BoardVO();

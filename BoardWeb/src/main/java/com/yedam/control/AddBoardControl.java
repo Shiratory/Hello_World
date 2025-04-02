@@ -38,7 +38,11 @@ public class AddBoardControl implements Control {
 			BoardMapper mapper = sqlSession.getMapper(BoardMapper.class);
 			int r = mapper.insertBoard(board);
 			
-			resp.sendRedirect("boardList.do"); // 요청 재지정
+			if(r > 0) {
+				resp.sendRedirect("boardList.do"); // 요청 재지정
+			} else {
+				System.out.println("등록실패");
+			}
 		}
 	}
 

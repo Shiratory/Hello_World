@@ -9,23 +9,23 @@
   String paging = (String) request.getAttribute("page");
 %>
  <form action="modifyBoard.do">
- <input type = "hidden" name = "bno" value = "<%= board.getBoardNo() %>">
- <input type = "hidden" name = "page" value = "<%= paging %>">
+ <input type = "hidden" name = "bno" value = "${board.boardNo }">
+ <input type = "hidden" name = "page" value = "${page }">
   <table class = "table">
     
      <tr>
-       <th>글 번호</th><td><%=board.getBoardNo() %></td>
-       <th>작성자</th><td><%=board.getWriter() %></td>
+       <th>글 번호</th><td>${board.boardNo }</td>
+       <th>작성자</th><td>${board.writer }</td>
      </tr>
   	 <tr>
-  	   <th>제 목</th><td><input type = "text" name = "title" class="form-control" value="<%=board.getTitle() %>"></td>
+  	   <th>제 목</th><td><input type = "text" name = "title" class="form-control" value=${board.title }></td>
   	 </tr>
 	 <tr>
 	   <th>내 용</th>
-	   <td colspan = "3"><textarea class = "form-control" name = "content" cols = "30" rows = "3" ><%=board.getContent() %></textarea></td>
+	   <td colspan = "3"><textarea class = "form-control" name = "content" cols = "30" rows = "3" >${board.content }</textarea></td>
 	 </tr> 
 	 <tr>
-  	   <th>작성일자</th><td colspan = "3"><%=board.getWriteDate() %></td>
+  	   <th>작성일자</th><td colspan = "3">${board.writeDate }</td>
   	 </tr>
   	 <tr>
   	   <td colspan = "3">

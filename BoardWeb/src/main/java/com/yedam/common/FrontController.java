@@ -21,6 +21,7 @@ import com.yedam.control.LogoutControl;
 import com.yedam.control.MainControl;
 import com.yedam.control.ModifyBoardControl;
 import com.yedam.control.ModifyFormControl;
+import com.yedam.control.SignUpControl;
 
 // *.do 요청에 실행
 public class FrontController extends HttpServlet {
@@ -38,7 +39,7 @@ public class FrontController extends HttpServlet {
 		map.put("/main.do", new MainControl()); // 메인화면
 		map.put("/board.do", new BoardControl()); // 상세화면
 		map.put("/boardList.do", new BoardListControl()); // 목록
-		map.put("/addBoard.do", new AddBoardControl());// 글 등록 AddBoardControl
+		map.put("/addBoard.do", new AddBoardControl());// 글 등록 
 		map.put("/modifyForm.do", new ModifyFormControl()); // 글 수정 화면
 		map.put("/modifyBoard.do", new ModifyBoardControl()); // 수정 처리
 		map.put("/deleteForm.do", new DeleteFormControl()); // 삭제화면
@@ -46,7 +47,8 @@ public class FrontController extends HttpServlet {
 		map.put("/loginForm.do", new LoginFormControl()); // 로그인화면
 		map.put("/login.do", new LoginControl()); // 로그인처리
 		map.put("/logout.do", new LogoutControl()); // 로그아웃처리
-		
+		map.put("/signForm.do", new SignUpControl()); // 회원가입)
+		map.put("/signUp.do", new SignUpControl()); // 회원가입처리
 	}
 	// service
 	@Override

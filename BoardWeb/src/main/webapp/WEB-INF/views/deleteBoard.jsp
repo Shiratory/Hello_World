@@ -3,7 +3,7 @@
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix = "c" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix = "fmt" %>
 <!-- deleteBoard.jsp -->
-<jsp:include page = "includes/header.jsp"/>
+
 <h3>파괴화면(deleteBoard.jsp)</h3>
 
 <form action="deleteBoard.do">
@@ -31,4 +31,3 @@
        </td>
   </table>
   </form>
-<jsp:include page = "includes/footer.jsp"/>

@@ -19,7 +19,7 @@ public class SignUpControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 1. 회원가입 화면 WEB-INF/views/signForm.jsp
 		if(req.getMethod().equals("GET")) {
-			req.getRequestDispatcher("WEB-INF/views/signForm.jsp").forward(req, resp);		
+			req.getRequestDispatcher("common/signForm.tiles").forward(req, resp);		
 		} else {
 		// 2. 회원가입 처리	 (파일업로드 image, db에 등록)
 			

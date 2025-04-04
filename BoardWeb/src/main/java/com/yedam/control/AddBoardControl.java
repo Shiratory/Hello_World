@@ -20,7 +20,7 @@ public class AddBoardControl implements Control {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if(req.getMethod().equals("GET")) {
 			// 요청 재지정 // URL에 직접 입력, 링크 -> get방식 요청
-		req.getRequestDispatcher("WEB-INF/views/addFoam.jsp").forward(req, resp);
+		req.getRequestDispatcher("common/addFoam.tiles").forward(req, resp);
 		} else if(req.getMethod().equals("POST")) {
 			req.setCharacterEncoding("UTF-8");
 			// 등록

@@ -73,6 +73,7 @@ let dataAry;
 	
 	// select의 change 이벤트
 	//도와줘 지피티에몽
+	
 	document.querySelector('select#searchGender').addEventListener('change', function(e){
 		console.log(e.target.value);
 		let gendervalue = e.target.value;

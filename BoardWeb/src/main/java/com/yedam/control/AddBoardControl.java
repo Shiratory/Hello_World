@@ -23,6 +23,10 @@ public class AddBoardControl implements Control {
 		req.getRequestDispatcher("common/addFoam.tiles").forward(req, resp);
 		} else if(req.getMethod().equals("POST")) {
 			req.setCharacterEncoding("UTF-8");
+			String address = req.getRemoteAddr();
+			if(address.equals("0:0:0:0:0:0:0:1")){
+			   address = "localHost";
+			}
 			// 등록
 			String title = req.getParameter("title");
 			String writer = req.getParameter("writer");
@@ -31,7 +35,8 @@ public class AddBoardControl implements Control {
 			BoardVO board = new BoardVO();
 			board.setTitle(title);
 			board.setWriter(writer);
-			board.setContent(content);
+			board.setContent(content+"\n("+address+")");
+			
 			
 			// mybatis 활용해서 jdbc 처리
 			SqlSession sqlSession = DataSource.getInstance().openSession(true);

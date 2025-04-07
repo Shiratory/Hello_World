@@ -39,15 +39,11 @@ public class ModifyFormControl implements Control {
 		if(logId != null && logId.equals(board.getWriter())) {
 			
 			// board.jsp 전달
-			req.getRequestDispatcher("/WEB-INF/views/modifyBoard.jsp").forward(req, resp);
+			req.getRequestDispatcher("common/modifyBoard.tiles").forward(req, resp);
 		} else {
 			req.setAttribute("msg", " 다른 사람의 글은 수정할 수 없습니다.");
-			req.getRequestDispatcher("/WEB-INF/views/board.jsp").forward(req, resp);
+			req.getRequestDispatcher("common/board.tiles").forward(req, resp);
 		}
-		
-		req.setAttribute("board", board);
-		req.setAttribute("page", page);
-		req.getRequestDispatcher("/WEB-INF/views/modifyBoard.jsp").forward(req, resp);
 		
 		
 	}

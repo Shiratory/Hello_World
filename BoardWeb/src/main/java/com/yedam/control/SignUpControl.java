@@ -37,6 +37,8 @@ public class SignUpControl implements Control {
 			String upw = mr.getParameter("userPw");
 			String unm = mr.getParameter("userName");
 			String img = mr.getFilesystemName("userImg");
+			if(img == null)
+			   img = ""; 
 			
 			MemberVO mvo = new MemberVO();
 			mvo.setMemberId(uid);

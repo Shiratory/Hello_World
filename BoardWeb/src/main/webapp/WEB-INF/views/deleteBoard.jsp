@@ -23,7 +23,7 @@
 	   <td colspan = "3"><textarea class = "form-control" name = "content" cols = "30" rows = "3" readonly>${board.content }</textarea></td>
 	 </tr> 
 	 <tr>
-  	   <th>작성일자</th><td colspan = "3">${board.writedate }</td>
+  	   <th>작성일자</th><td colspan = "3">${board.writeDate }</td>
   	 </tr>
   	 <tr>
   	   <td colspan = "3">

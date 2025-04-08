@@ -23,10 +23,6 @@
       		  </when>
       		</choose>
       		order by board_no DESC) a) b
-   where b.rn > (#{page} -1) * 10
-   <![CDATA[
-   and   b.rn <= (#{page} * 10)
-   ]]>
   </select>
   
   <!-- 등록 -->

@@ -1,10 +1,12 @@
 package com.yedam.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
+import com.yedam.common.SearchDTO;
 import com.yedam.mapper.ReplyMapper;
 import com.yedam.vo.ReplyVO;
 
@@ -15,27 +17,36 @@ public class ReplyServiceImpl implements ReplyService{
 	ReplyMapper mapper = sqlSession.getMapper(ReplyMapper.class);
 
 	@Override
-	public List<ReplyVO> replyList(int boardNo) {
+	public List<ReplyVO> replyList(SearchDTO search) {
+		
 		// TODO Auto-generated method stub
-		return mapper.selectList(boardNo) ;
+		return mapper.selectList(search) ;
 	}
 
 	@Override
 	public boolean addReply(ReplyVO rvo) { // 입사: 사원생성, 급여생성, 근태생성 etc
-		// TODO Auto-generated method stub
 		return mapper.insertReply(rvo) == 1;
 	}
 
 	@Override
 	public boolean removeReply(int replyNo) {
-		// TODO Auto-generated method stub
 		return mapper.deleteReply(replyNo) == 1;
 	}
 
 	@Override
 	public ReplyVO getReply(int replyNo) {
-		// TODO Auto-generated method stub
 		return mapper.selectReply(replyNo);
+	}
+
+	@Override
+	public int getTotalCnt(int boardNo) {
+		return mapper.selectReplyCnt(boardNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> replyListForDT(int boardNo) {
+		// TODO Auto-generated method stub
+		return mapper.selectListForDT(boardNo);
 	}
 
 }

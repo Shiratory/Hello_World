@@ -14,8 +14,11 @@ import com.yedam.control.AddBoardControl;
 import com.yedam.control.AddReplycontrol;
 import com.yedam.control.BoardControl;
 import com.yedam.control.BoardListControl;
+import com.yedam.control.DeleteEventControl;
 import com.yedam.control.DeleteFormControl;
 import com.yedam.control.DeteleBoardControl;
+import com.yedam.control.EventFormControl;
+import com.yedam.control.EventListControl;
 import com.yedam.control.JSControl;
 import com.yedam.control.LoginControl;
 import com.yedam.control.LoginFormControl;
@@ -28,6 +31,7 @@ import com.yedam.control.RemoveReplyControl;
 import com.yedam.control.ReplyCountControl;
 import com.yedam.control.ReplyListControl;
 import com.yedam.control.SignUpControl;
+import com.yedam.control.addEventControl;
 
 // *.do 요청에 실행
 public class FrontController extends HttpServlet {
@@ -61,6 +65,10 @@ public class FrontController extends HttpServlet {
 		map.put("/addReply.do", new AddReplycontrol()); // 추가
 		map.put("/replyCount.do", new ReplyCountControl()); // 댓글 수
 		map.put("/replyListDatatable.do", new RLDatatable()); // 댓글목록
+		map.put("/eventForm.do", new EventFormControl()); // fullcalendar 관련
+		map.put("/addEvent.do", new addEventControl());
+	    map.put("/eventList.do", new EventListControl());
+		map.put("/deleteEvent.do", new DeleteEventControl());
 	}
 	// service
 	@Override

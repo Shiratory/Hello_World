@@ -30,6 +30,6 @@ public class BoardControl implements Control{
 		req.setAttribute("page", page);
 		
 		// board.jsp 전달
-		req.getRequestDispatcher("common/board.tiles").forward(req, resp);
+		req.getRequestDispatcher("common/board2.tiles").forward(req, resp);
 	}
 }

@@ -17,16 +17,34 @@
       end_date
     )VALUES(
       #{title},
-      TO_DATE(#{startDate}, 'YYYY-MM-DD'),
-      TO_DATE(#{endDate}, 'YYYY-MM-DD')
+      #{startDate},
+      #{endDate},
     )
   </insert>
 
   <delete id = "deleteEvent" parameterType="event">
     DELETE FROM tbl_event
     WHERE title = #{title}
-      AND start_date = TO_DATE(#{startDate}, 'YYYY-MM-DD')
-      AND end_date = TO_DATE(#{endDate}, 'YYYY-MM-DD')
+      AND start_date = #{startDate}
+      AND end_date = #{endDate}
   </delete>
-
+  
+  
+  
+  <!-- Chart -->
+  <select id = "selectWriter" resultType = "map">
+    select user_name as "username"
+    	 , b.writer as "writer"
+    	 , count(1) as "cnt"
+	from tbl_board b
+	join tbl_member m
+	on b.writer = m.user_id
+	group by user_name, b.writer
+  </select>
+  
+  <!-- 로그정보생성 -->
+  <insert id = "insertLogging" parameterType = "map">
+    insert into tbl_logging(log_id, req_path, req_host)
+    values(loggin_seq.nextval, #{page}, #{host})
+  </insert>
 </mapper>

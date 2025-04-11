@@ -21,10 +21,15 @@
         </thead>
         <tbody id = "centerList"></tbody>
         </table>
+
+<ul id = "list"></ul>
+
 <script>
   let url = 'https://api.odcloud.kr/api/15077586/v1/centers?page=1&perPage=284&serviceKey=2kZS3d3whovUk5wiSrdo1yjrjCN2KVq7Gvxsbjr3B2WyAO%2BBn0T%2Be2w2a6Uq00O9Iy2jmYyRhvy%2FEMXXlxwqaw%3D%3D';
   // 센터목록 저장 배열
+
   let centerList = []; 
+  // api 호출 아작스
   fetch(url)
     .then(result => result.json())
     .then(result => {
@@ -50,12 +55,12 @@
         document.querySelector("#centerList").appendChild(tr);
       }
 		})
-    .catch(err => console.error(err));
   })
+  .catch(err => console.error(err));
 
-    // 이벤트 this 1) 함수 : window
+    // 이벤트 this 1) 함수 : window 2) 이벤트: 이벤트대상
     document.querySelector('#choice').addEventListener('change', function(e){
-      let val = this.value;
+      let val = this.value; // 사용자의 선택값
       document.querySelector("#centerList").innerHTML = ""; // 목록지우기
       centerList
       .filter(center => center.sido == val)
@@ -84,6 +89,8 @@
   		function openWindow(center={}){
   			window.open("map.jsp?lat="+center.lat+"&lng="+center.lng);
   		}
+  </script>
+  <script src = "js/array2.js">
   </script>
 </body>
 </html>

@@ -47,7 +47,9 @@ public class FilterOne implements Filter {
 		blackList.add("192.168.0.38");
 		// 로그 저장
 		EventService svc = new EventServiceImpl();
-		svc.logCreate(map);
+		if (!map.get("page").contains("images")) {
+			svc.logCreate(map);
+		}
 		if (blackList.contains(ip)) {
 			return;
 		}
